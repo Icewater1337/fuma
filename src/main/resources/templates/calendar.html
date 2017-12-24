@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<form action="#" th:action="@{/greeting}" th:object="${eventForm}" method="post">
+    <p>When should the event start? <input type="datetime-local" th:field="*{from}" /></p>
+    <p>What do we do? <input type="text" th:field="*{description}" /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+<iframe src="https://calendar.google.com/calendar/embed?mode=WEEK&amp;height=1200&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=fuchsmath%40gmail.com&amp;color=%232952A3&amp;src=qfq3qv4m3jgefoeeb0imp530q4%40group.calendar.google.com&amp;color=%232F6309&amp;src=u75ptp3267h3g03vl8cko9h3to%40group.calendar.google.com&amp;color=%23853104&amp;ctz=Europe%2FAmsterdam" style="border-width:0" width="1200" height="1200" frameborder="0" scrolling="no"></iframe>
+
+</body>
+</html>
