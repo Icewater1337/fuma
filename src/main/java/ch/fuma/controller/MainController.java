@@ -14,13 +14,13 @@ import javax.validation.Valid;
 @Controller
 public class MainController {
 
-    @GetMapping("/greeting")
+    @GetMapping("/")
     public String greetingForm(Model model) {
         model.addAttribute("eventForm", new EventForm());
         return "calendar";
     }
 
-    @PostMapping("/greeting")
+    @PostMapping("/")
     public String greetingSubmit(@ModelAttribute EventForm eventForm) {
         TelegramBot.events.add(eventForm);
         return "calendar";
