@@ -28,7 +28,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
                     SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
                             .setChatId(update.getMessage().getChatId())
-                            .setText(link);
+                            .setText("Hey, the person with the ip: "+ event.getIpAddress()+" sent you the following proposal: " + event.getDescription()+"\n the link is: \n"+link);
                     try {
                         execute(message); // Call method to send the message
                     } catch (TelegramApiException e) {

@@ -16,6 +16,7 @@ public class EventForm {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date until;
 
+    private String ipAddress;
 
     private String description;
 
@@ -42,5 +43,13 @@ public class EventForm {
 
     public void setUntil(Date until) {
         this.until = until;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 
@@ -15,13 +16,14 @@ import javax.validation.Valid;
 public class MainController {
 
     @GetMapping("/")
-    public String greetingForm(Model model) {
+    public String greetingForm(Model model, HttpServletRequest request) {
         model.addAttribute("eventForm", new EventForm());
         return "calendar";
     }
 
     @PostMapping("/")
-    public String greetingSubmit(@ModelAttribute EventForm eventForm) {
+    public String greetingSubmit(@ModelAttribute EventForm eventForm, HttpServletRequest request) {
+        eventForm.setIpAddress(request.getRemoteAddr());
         TelegramBot.events.add(eventForm);
         return "calendar";
     }
