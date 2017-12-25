@@ -13,8 +13,8 @@ public class EventForm {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date from;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private Date until;
+
+    private String name;
 
     private String ipAddress;
 
@@ -37,13 +37,6 @@ public class EventForm {
         this.from = from;
     }
 
-    public Date getUntil() {
-        return until;
-    }
-
-    public void setUntil(Date until) {
-        this.until = until;
-    }
 
     public String getIpAddress() {
         return ipAddress;
@@ -51,5 +44,13 @@ public class EventForm {
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

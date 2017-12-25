@@ -6,24 +6,26 @@ import ch.fuma.utility.SecurityHandler;
 import ch.fuma.utility.TelegramBot;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 
 @Controller
 public class MainController {
 
     @GetMapping("/")
-    public String greetingForm(Model model, HttpServletRequest request) {
+    public String greetingForm(Model model, HttpServletRequest request, @ModelAttribute("success") final String msg) {
         model.addAttribute("eventForm", new EventForm());
+        model.addAttribute("success", msg);
         return "calendar";
     }
 
     @PostMapping("/")
-    public String greetingSubmit(@ModelAttribute EventForm eventForm, HttpServletRequest request) {
+    public String greetingSubmit(@ModelAttribute EventForm eventForm, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         String ipAddr = request.getRemoteAddr();
 
         // if it is a new day, revert block.
@@ -44,7 +46,9 @@ public class MainController {
         }
 
 
-        return "calendar";
+        redirectAttributes.addFlashAttribute("success", "Thank you for suggesting the appointment! I will contact you shortly, if I know who you are :)");
+
+        return "redirect:/";
     }
 
 

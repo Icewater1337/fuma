@@ -1,6 +1,5 @@
 package ch.fuma;
 
-import ch.fuma.utility.SecurityHandler;
 import ch.fuma.utility.TelegramBot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

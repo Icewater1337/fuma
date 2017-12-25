@@ -7,9 +7,19 @@
 <body>
 
 <div class="container">
+   <div class="row">
+       <div th:remove="${success == ''}  ? all : none"
+            class="alert alert-success alert-dismissible fade show" role="alert">
+           <div th:text="${success}"></div>
+       </div>
+   </div>
     <div class="row">
         <div class="col-md-auto">
             <form action="#" th:action="@{/}" th:object="${eventForm}" method="post">
+                <div class="form-group">
+                    <label for="nameField">Who are you? </label>
+                    <input type="text" th:field="*{name}" id="nameField" class="form-control"/>
+                </div>
                 <div class="form-group">
                     <label for="fromField">When should the event start?</label>
                     <input type="datetime-local" th:field="*{from}" id="fromField" class="form-control"/>
