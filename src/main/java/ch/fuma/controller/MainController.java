@@ -1,5 +1,6 @@
 package ch.fuma.controller;
 
+import ch.fuma.Application;
 import ch.fuma.forms.EventForm;
 import ch.fuma.utility.SecurityHandler;
 import ch.fuma.utility.TelegramBot;
@@ -33,7 +34,10 @@ public class MainController {
 
         if ( SecurityHandler.isBelowMaxAttempts(ipAddr)) {
             eventForm.setIpAddress(ipAddr);
-            TelegramBot.events.add(eventForm);
+            TelegramBot telegramBot = Application.getTelegramBot();
+
+            telegramBot.send(eventForm);
+
         } else {
             SecurityHandler.lockUser(ipAddr);
             return "sadPony";

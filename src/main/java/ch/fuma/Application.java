@@ -11,6 +11,8 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 @SpringBootApplication
 public class Application {
 
+	private static TelegramBot telegramBot;
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 
@@ -19,9 +21,14 @@ public class Application {
 		TelegramBotsApi botsApi = new TelegramBotsApi();
 
 		try {
-			botsApi.registerBot(new TelegramBot());
+			telegramBot = new TelegramBot();
+			botsApi.registerBot(telegramBot);
 		} catch (TelegramApiException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static TelegramBot getTelegramBot() {
+		return telegramBot;
 	}
 }
