@@ -1,7 +1,12 @@
 <!DOCTYPE HTML>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
@@ -13,6 +18,9 @@
            <div th:text="${success}"></div>
        </div>
    </div>
+
+    <a href="#scheduleAppointment" class="btn btn-default" data-toggle="collapse">I want to propose an appointment!</a>
+<div id="scheduleAppointment" class="collapse">
     <div class="row">
         <div class="col-md-auto">
             <form action="#" th:action="@{/}" th:object="${eventForm}" method="post">
@@ -20,17 +28,33 @@
                     <label for="nameField">Who are you? </label>
                     <input type="text" th:field="*{name}" id="nameField" class="form-control"/>
                 </div>
+
                 <div class="form-group">
-                    <label for="fromField">When should the event start?</label>
-                    <input type="datetime-local" th:field="*{from}" id="fromField" class="form-control"/>
+                    <div class="row">
+                        <label for="fromField">When should the event start?</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <input type="date" th:field="*{from}" id="fromField" class="form-control"/>
+                        </div>
+                        <div class="col-md-auto">
+                            <input type="time" th:field="*{fromTime}" class="form-control"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="whatDoWeDo">What do we do? </label>
-                    <input type="text" th:field="*{description}" id="whatDoWeDo" class="form-control"/>   </div>
+                    <input type="text" th:field="*{description}" id="whatDoWeDo" class="form-control"/>
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
-        <div class="row">
+    </div>
+
+
+</div>
+
+    <div class="row">
             <div class="col-md-auto">
                 <iframe src="https://calendar.google.com/calendar/embed?mode=WEEK&amp;height=900&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=fuchsmath%40gmail.com&amp;color=%232952A3&amp;src=qfq3qv4m3jgefoeeb0imp530q4%40group.calendar.google.com&amp;color=%232F6309&amp;src=u75ptp3267h3g03vl8cko9h3to%40group.calendar.google.com&amp;color=%23853104&amp;ctz=Europe%2FAmsterdam" style="border-width:0" frameborder="0" width="900" height="900" scrolling="no"></iframe>
             </div>
@@ -39,7 +63,6 @@
     </div>
 
 
-</div>
 
 
 </body>

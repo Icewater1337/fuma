@@ -7,6 +7,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 public class TelegramBot extends TelegramLongPollingBot {
 
@@ -36,11 +37,15 @@ public class TelegramBot extends TelegramLongPollingBot {
             chatId = 244571618L;
         }
         try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd:HHmmss");
-            String startDate = format.format(eventForm.getFrom()).replace(":", "T");
-            String endTime = String.valueOf(Integer.parseInt(startDate.substring(9, 11)) + 1) + startDate.substring(11);
-            String endDate = startDate.substring(0, 9) + endTime;
-            String link = "http://www.google.com/calendar/event?action=TEMPLATE&src=qfq3qv4m3jgefoeeb0imp530q4@group.calendar.google.com&text=" + eventForm.getDescription() + " mit "+eventForm.getName()+ "&dates=" + startDate + "/" + endDate + "&details=&sprop=&location=";
+            SimpleDateFormat formatDate = new SimpleDateFormat("yyyyMMdd");
+            DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmmss");
+            String startTime = "T"+ eventForm.getFromTime().format(formatTime);
+
+
+            String startDate = formatDate.format(eventForm.getFrom())+ startTime;
+            String endTime = String.valueOf(Integer.parseInt(startTime.substring(1, 3)) + 1) + startTime.substring(3);
+            String endDate = formatDate.format(eventForm.getFrom()) + "T" + endTime;
+            String link = "http://www.google.com/calendar/event?action=TEMPLATE&src=qfq3qv4m3jgefoeeb0imp530q4@group.calendar.google.com&text=" + eventForm.getDescription() + "_mit_"+eventForm.getName()+ "&dates=" + startDate + "/" + endDate + "&details=&sprop=&location=";
 
             SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
                 .setChatId(chatId)

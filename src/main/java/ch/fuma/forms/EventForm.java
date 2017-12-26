@@ -3,6 +3,7 @@ package ch.fuma.forms;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 /**
@@ -10,9 +11,11 @@ import java.util.Date;
  */
 public class EventForm {
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date from;
 
+    @DateTimeFormat(pattern="HH:mm")
+    private LocalTime fromTime;
 
     private String name;
 
@@ -37,7 +40,6 @@ public class EventForm {
         this.from = from;
     }
 
-
     public String getIpAddress() {
         return ipAddress;
     }
@@ -52,5 +54,13 @@ public class EventForm {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalTime getFromTime() {
+        return fromTime;
+    }
+
+    public void setFromTime(LocalTime fromTime) {
+        this.fromTime = fromTime;
     }
 }
