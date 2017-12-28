@@ -45,7 +45,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             String startDate = formatDate.format(eventForm.getFrom())+ startTime;
             String endTime = String.valueOf(Integer.parseInt(startTime.substring(1, 3)) + 1) + startTime.substring(3);
             String endDate = formatDate.format(eventForm.getFrom()) + "T" + endTime;
-            String link = "http://www.google.com/calendar/event?action=TEMPLATE&src=qfq3qv4m3jgefoeeb0imp530q4@group.calendar.google.com&text=" + eventForm.getDescription() + "_mit_"+eventForm.getName()+ "&dates=" + startDate + "/" + endDate + "&details=&sprop=&location=";
+            String link = "http://www.google.com/calendar/event?action=TEMPLATE&src=qfq3qv4m3jgefoeeb0imp530q4@group.calendar.google.com&text=" + eventForm.getDescription().replace(" ","_") + "_mit_"+eventForm.getName()+ "&dates=" + startDate + "/" + endDate + "&details=&sprop=&location=";
 
             SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
                 .setChatId(chatId)
